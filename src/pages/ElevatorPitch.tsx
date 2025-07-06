@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTheme } from '../contexts/ThemeContext';
-import { Play, Pause, RotateCcw, Clock, Target, Zap } from 'lucide-react';
+import { Play, Pause, RotateCcw, Clock, Target, Zap, Download } from 'lucide-react';
 import GlassCard from '../components/GlassCard';
 
 const ElevatorPitch: React.FC = () => {
@@ -28,6 +28,16 @@ const ElevatorPitch: React.FC = () => {
   const handleReset = () => {
     setIsPlaying(false);
     setCurrentTime(0);
+  };
+
+  const handleDownloadResume = () => {
+    // Create a link to download the PDF file
+    const link = document.createElement('a');
+    link.href = '/Resume Otana Jacob Wilson.pdf';
+    link.download = 'Jacob_Otana_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const formatTime = (seconds: number) => {
@@ -67,11 +77,20 @@ const ElevatorPitch: React.FC = () => {
           }`}>
             My Elevator Pitch
           </h1>
-          <p className={`text-lg ${
+          <p className={`text-lg mb-6 ${
             theme === 'dark' ? 'text-white/70' : 'text-slate-600'
           }`}>
             60 seconds to make an impression
           </p>
+          
+          {/* Resume Download Button */}
+          <button
+            onClick={handleDownloadResume}
+            className="inline-flex items-center px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-1 mb-8"
+          >
+            <Download className="w-5 h-5 mr-2" />
+            Download My Resume
+          </button>
         </div>
 
         {/* Pitch Player */}
@@ -196,6 +215,21 @@ const ElevatorPitch: React.FC = () => {
             <p>
               In my recent project, I helped an e-commerce client increase their online sales by 60% through a complete platform redesign. I'm passionate about creating solutions that make a real impact. <strong>I'd love to discuss how I can help your business achieve similar results.</strong>
             </p>
+          </div>
+          
+          {/* Additional Resume Download Button */}
+          <div className="text-center mt-8">
+            <button
+              onClick={handleDownloadResume}
+              className={`inline-flex items-center px-6 py-3 rounded-full font-semibold transition-all duration-300 border-2 ${
+                theme === 'dark'
+                  ? 'border-white/20 text-white hover:bg-white/10'
+                  : 'border-blue-500/30 text-blue-700 hover:bg-blue-500/10'
+              }`}
+            >
+              <Download className="w-5 h-5 mr-2" />
+              Get My Full Resume
+            </button>
           </div>
         </GlassCard>
       </div>

@@ -34,21 +34,17 @@ The contact form supports multiple email service providers. Choose one of the fo
 ### Option 1: EmailJS (Recommended)
 
 1. **Create an EmailJS account** at [EmailJS](https://www.emailjs.com/)
-2. **Set up a service** (Gmail, Outlook, etc.)
+2. **Set up Gmail service**:
+   - Go to Email Services in your EmailJS dashboard
+   - Click "Add New Service" 
+   - Select "Gmail"
+   - Use email: jacobotana96@gmail.com
+   - Use app password: kvfw eobz cukk ishx
 3. **Create an email template** with the following variables:
    - `{{from_name}}` - Sender's name
    - `{{from_email}}` - Sender's email
    - `{{subject}}` - Email subject
    - `{{message}}` - Email message
-   - `{{to_email}}` - Your email address
-4. **Update configuration** in `src/utils/emailService.ts`:
-   ```typescript
-   export const EMAILJS_CONFIG = {
-     serviceId: 'your_service_id',
-     templateId: 'your_template_id',
-     publicKey: 'your_public_key'
-   };
-   ```
 
 ### Option 2: Formspree (Alternative)
 

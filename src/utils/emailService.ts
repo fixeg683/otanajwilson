@@ -7,11 +7,11 @@ interface EmailData {
   message: string;
 }
 
-// EmailJS configuration - Replace with your actual EmailJS credentials
+// EmailJS configuration
 export const EMAILJS_CONFIG = {
-  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || '', // Replace with your EmailJS service ID
-  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '', // Replace with your EmailJS template ID
-  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '' // Replace with your EmailJS public key
+  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_gmail',
+  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_contact', 
+  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'your_public_key_here'
 };
 
 // Check if EmailJS is properly configured
@@ -42,7 +42,7 @@ export const sendEmail = async (emailData: EmailData) => {
       from_email: emailData.email,
       subject: emailData.subject,
       message: emailData.message,
-      to_email: 'jacob.otana@email.com', // Your email address
+      to_email: 'jacobotana96@gmail.com',
       reply_to: emailData.email
     };
 

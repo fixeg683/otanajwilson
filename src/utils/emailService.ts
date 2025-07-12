@@ -32,7 +32,7 @@ export const sendEmail = async (emailData: EmailData) => {
   if (!isEmailJSConfigured()) {
     return {
       success: false,
-      message: 'Email service is not configured. Please set up EmailJS credentials in environment variables or contact me directly at jacob.otana@email.com'
+      message: 'Email service is not configured. Please contact me directly at jacobotana96@gmail.com'
     };
   }
 
@@ -61,13 +61,13 @@ export const sendEmail = async (emailData: EmailData) => {
     console.error('Email sending error:', error);
     
     // Provide more specific error messages
-    let errorMessage = 'Failed to send email. Please try again or contact me directly at jacob.otana@email.com';
+    let errorMessage = 'Failed to send email. Please try again or contact me directly at jacobotana96@gmail.com';
     
     if (error instanceof Error) {
       if (error.message.includes('template ID not found')) {
-        errorMessage = 'Email service configuration error. Please contact me directly at jacob.otana@email.com';
+        errorMessage = 'Email service configuration error. Please contact me directly at jacobotana96@gmail.com';
       } else if (error.message.includes('service ID')) {
-        errorMessage = 'Email service configuration error. Please contact me directly at jacob.otana@email.com';
+        errorMessage = 'Email service configuration error. Please contact me directly at jacobotana96@gmail.com';
       }
     }
     

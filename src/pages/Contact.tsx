@@ -515,7 +515,7 @@ const Contact: React.FC = () => {
                 Close
               </button>
               <a
-                href="mailto:jacob.otana@email.com"
+                href="mailto:jacobotana96@gmail.com"
                 className="px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full font-medium transition-all duration-300"
               >
                 Email Directly

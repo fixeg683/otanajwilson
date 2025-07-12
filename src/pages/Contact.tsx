@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTheme } from '../contexts/ThemeContext';
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Loader } from 'lucide-react';
 import GlassCard from '../components/GlassCard';
-import { sendEmail, validateFormData, sanitizeFormData, initializeEmailJS, isEmailJSConfigured } from '../utils/emailService';
+import { sendEmail, validateFormData, sanitizeFormData, initializeEmailService, isEmailServiceConfigured } from '../utils/emailService';
 
 const Contact: React.FC = () => {
   const { theme } = useTheme();
@@ -17,10 +17,17 @@ const Contact: React.FC = () => {
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [formErrors, setFormErrors] = useState<string[]>([]);
+  const [emailServiceAvailable, setEmailServiceAvailable] = useState(false);
 
-  // Initialize EmailJS on component mount
+  // Initialize Email Service on component mount
   React.useEffect(() => {
-    initializeEmailJS();
+    const checkEmailService = async () => {
+      const isConfigured = await isEmailServiceConfigured();
+      setEmailServiceAvailable(isConfigured);
+    };
+    
+    initializeEmailService();
+    checkEmailService();
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -174,7 +181,7 @@ const Contact: React.FC = () => {
             </h2>
 
             {/* Email Configuration Warning */}
-            {!emailConfigured && (
+            {!emailServiceAvailable && (
               <div className={`mb-6 p-4 rounded-xl border ${
                 theme === 'dark'
                   ? 'bg-amber-500/10 border-amber-500/20 text-amber-400'
@@ -182,10 +189,10 @@ const Contact: React.FC = () => {
               }`}>
                 <div className="flex items-center mb-2">
                   <AlertCircle className="w-5 h-5 mr-2" />
-                  <span className="font-medium">Email Service Not Configured</span>
+                  <span className="font-medium">Email Service Unavailable</span>
                 </div>
                 <p className="text-sm">
-                  The contact form will show a message with my direct email address. To enable email sending, configure EmailJS credentials.
+                  The email service is currently unavailable. Please contact me directly at jacobotana96@gmail.com or try again later.
                 </p>
               </div>
             )}
@@ -428,14 +435,14 @@ const Contact: React.FC = () => {
                   <h4 className={`font-semibold mb-1 ${
                     theme === 'dark' ? 'text-white' : 'text-slate-800'
                   }`}>
-                    Email Configuration {emailConfigured ? 'Active' : 'Required'}
+                    Email Service {emailServiceAvailable ? 'Active' : 'Unavailable'}
                   </h4>
                   <p className={`text-sm ${
                     theme === 'dark' ? 'text-white/70' : 'text-slate-600'
                   }`}>
-                    {emailConfigured 
-                      ? 'Email service is configured and ready to use.'
-                      : 'To enable email functionality, set up EmailJS credentials in environment variables (VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, VITE_EMAILJS_PUBLIC_KEY).'
+                    {emailServiceAvailable 
+                      ? 'Gmail SMTP service is configured and ready to use.'
+                      : 'Email service is currently unavailable. Please contact me directly at jacobotana96@gmail.com'
                     }
                   </p>
                 </div>

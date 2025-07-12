@@ -151,7 +151,7 @@ const Contact: React.FC = () => {
     }
   ];
 
-  const emailConfigured = isEmailJSConfigured();
+  const emailConfigured = isEmailServiceConfigured();
 
 
   return (

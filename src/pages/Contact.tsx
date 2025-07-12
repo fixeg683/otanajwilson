@@ -110,9 +110,9 @@ const Contact: React.FC = () => {
     {
       name: 'X (Twitter)',
       url: 'https://x.com/otanajwilson',
-      icon: 'custom-x',
-      color: 'hover:text-white',
-      bgColor: 'bg-black hover:bg-gray-800'
+      icon: 'fab fa-x-twitter',
+      color: 'hover:text-gray-900 dark:hover:text-white',
+      bgColor: 'hover:bg-gray-100 dark:hover:bg-gray-800'
     },
     {
       name: 'Instagram',
@@ -146,16 +146,6 @@ const Contact: React.FC = () => {
 
   const emailConfigured = isEmailJSConfigured();
 
-  // Custom X icon component
-  const XIcon = () => (
-    <svg 
-      viewBox="0 0 24 24" 
-      className="w-5 h-5 fill-current"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-    </svg>
-  );
 
   return (
     <div className="min-h-screen py-20 px-4">
@@ -379,19 +369,13 @@ const Contact: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg ${
-                      social.icon === 'custom-x' 
-                        ? `${social.bgColor} text-white`
-                        : theme === 'dark'
-                          ? 'bg-white/10 text-white/80 hover:bg-white/20'
-                          : 'bg-slate-200/50 text-slate-700 hover:bg-slate-300/50'
-                    } ${social.icon !== 'custom-x' ? social.color + ' ' + social.bgColor : ''}`}
+                      theme === 'dark'
+                        ? 'bg-white/10 text-white/80 hover:bg-white/20'
+                        : 'bg-slate-200/50 text-slate-700 hover:bg-slate-300/50'
+                    } ${social.color} ${social.bgColor}`}
                     title={social.name}
                   >
-                    {social.icon === 'custom-x' ? (
-                      <XIcon />
-                    ) : (
-                      <i className={`${social.icon} text-lg`}></i>
-                    )}
+                    <i className={`${social.icon} text-lg`}></i>
                   </a>
                 ))}
               </div>

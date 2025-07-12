@@ -110,9 +110,9 @@ const Contact: React.FC = () => {
     {
       name: 'X (Twitter)',
       url: 'https://x.com/otanajwilson',
-      icon: 'fab fa-x-twitter',
-      color: 'hover:text-gray-900 dark:hover:text-white',
-      bgColor: 'hover:bg-gray-100 dark:hover:bg-gray-800'
+      icon: 'fab fa-twitter',
+      color: 'hover:text-blue-400',
+      bgColor: 'hover:bg-blue-50 dark:hover:bg-blue-900/20'
     },
     {
       name: 'Instagram',

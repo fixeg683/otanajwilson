@@ -36,7 +36,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <Link to="/" className={`text-2xl font-bold ${
             theme === 'dark' ? 'text-white' : 'text-slate-800'
           }`}>
-            Jacob Otana
+            OtanaWilson
           </Link>
 
           {/* Desktop Navigation */}
